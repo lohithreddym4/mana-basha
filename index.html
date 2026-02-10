@@ -1,234 +1,65 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <head>
-      <!-- Primary SEO -->
-      <title>Telugitha – Telugu Programming Language Playground</title>
+    <!-- Primary SEO -->
+    <title>
+      Telugitha – A Modern Telugu Programming Language Playground
+    </title>
 
-      <meta name="title" content="Telugitha – Telugu Programming Language" />
-      <meta
-        name="description"
-        content="Telugitha is a Telugu-inspired programming language that compiles to JavaScript. Write code in Telugu, run it instantly in your browser, and explore language design." />
-      <meta
-        name="keywords"
-        content="Telugu programming language, Indian programming language, learn compilers, programming playground, Telugu code, javascript compiler, programming language experiment" />
-      <meta name="author" content="Venkata Lohith Kumar Reddy" />
+    <meta
+      name="title"
+      content="Telugitha – A Modern Telugu Programming Language" />
+    <meta
+      name="description"
+      content="Telugitha is a Telugu-inspired programming language that compiles to JavaScript. Write code in Telugu, run it instantly in your browser, and explore language design." />
+    <meta
+      name="keywords"
+      content="Telugu programming language, Indian programming language, learn compilers, programming playground, Telugu code, javascript compiler, programming language experiment" />
+    <meta name="author" content="Venkata Lohith Kumar Reddy" />
 
-      <!-- Mobile -->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      <!-- Robots -->
-      <meta name="robots" content="index, follow" />
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
 
-      <!-- Open Graph (VERY IMPORTANT for sharing) -->
-      <meta
-        property="og:title"
-        content="Telugitha – Telugu Programming Language" />
-      <meta
-        property="og:description"
-        content="Write programs in Telugu. Compile to JavaScript instantly. Explore how programming languages are built." />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://telugitha.netlify.app" />
+    <!-- Open Graph (VERY IMPORTANT for sharing) -->
+    <meta
+      property="og:title"
+      content="Telugitha – A Modern Telugu Programming Language" />
+    <meta
+      property="og:description"
+      content="Write programs in Telugu. Compile to JavaScript instantly. Explore how programming languages are built." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://telugitha.netlify.app" />
 
-      <!-- Twitter -->
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta
-        name="twitter:title"
-        content="Telugitha – Telugu Programming Language" />
-      <meta
-        name="twitter:description"
-        content="A Telugu-inspired programming language running entirely in your browser." />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Telugitha – A Modern Telugu Programming Language" />
+    <meta
+      name="twitter:description"
+      content="A Telugu-inspired programming language running entirely in your browser." />
 
-      <!-- Theme color for browsers -->
-      <meta name="theme-color" content="#020617" />
-    </head>
+    <!-- Theme color for browsers -->
+    <meta name="theme-color" content="#020617" />
 
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        height: 100vh;
-        background: radial-gradient(circle at top, #0b1220, #020617);
-        color: #e5e7eb;
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      /* HEADER */
-
-      .header {
-        width: 100%;
-        max-width: 1200px;
-        padding: 30px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .title {
-        font-size: 28px;
-        font-weight: 700;
-        letter-spacing: -1px;
-      }
-
-      .title span {
-        color: #22c55e;
-      }
-
-      /* MAIN GRID */
-
-      .container {
-        width: 100%;
-        max-width: 1200px;
-        height: 75vh;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        padding: 0 20px 20px;
-      }
-
-      /* EDITOR */
-
-      .panel {
-        background: #020617;
-        border: 1px solid #0f172a;
-        border-radius: 14px;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
-      }
-
-      .panel-header {
-        padding: 14px 18px;
-        border-bottom: 1px solid #0f172a;
-        font-weight: 600;
-        color: #94a3b8;
-        background: #020617;
-      }
-
-      textarea {
-        flex: 1;
-        background: transparent;
-        color: #22c55e;
-        border: none;
-        padding: 20px;
-        font-size: 15px;
-        resize: none;
-        outline: none;
-        line-height: 1.6;
-        caret-color: #22c55e;
-      }
-
-      textarea::selection {
-        background: #064e3b;
-      }
-
-      /* OUTPUT */
-
-      pre {
-        flex: 1;
-        padding: 20px;
-        overflow: auto;
-        color: #e5e7eb;
-      }
-
-      .error {
-        color: #f87171;
-      }
-
-      /* BUTTON */
-
-      .run-btn {
-        position: fixed;
-        bottom: 30px;
-        right: 40px;
-        padding: 14px 26px;
-        border: none;
-        border-radius: 12px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-
-        color: black;
-        background: #22c55e;
-
-        transition: 0.2s;
-        box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
-      }
-
-      .run-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 30px rgba(34, 197, 94, 0.6);
-      }
-
-      .run-btn:active {
-        transform: scale(0.96);
-      }
-
-      /* SCROLLBAR */
-
-      ::-webkit-scrollbar {
-        width: 10px;
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background: #0f172a;
-        border-radius: 10px;
-      }
-      .footer {
-        width: 100%;
-        max-width: 1200px;
-        padding: 18px 20px;
-        margin-top: auto;
-        display: flex;
-        justify-content: space-between;
-        color: #64748b;
-        font-size: 14px;
-      }
-
-      .footer a {
-        color: #22c55e;
-        text-decoration: none;
-      }
-
-      .footer a:hover {
-        text-decoration: underline;
-      }
-    </style>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js"></script>
   </head>
 
   <body>
     <div class="header">
-      <div class="title">🔥 <span>Mana</span> Basha Playground</div>
-      <div style="color: #64748b">Telugu Programming Language</div>
+      <div class="title">🔥 <span>Telugitha</span> Playground</div>
+
+      <div style="color: #64748b">A Modern Telugu Programming Language</div>
     </div>
 
     <div class="container">
       <div class="panel">
         <div class="panel-header">Editor</div>
-        <textarea id="code">
-igo x = 5;
-igo alive = nijam;
-
-okavela alive {
-  chupi("Still breathing");
-} lekunte {
-  chupi("Ghost mode");
-}
-
-chestoone undu {
-  chupi(x);
-  x = x + 1;
-} (x < 8) varuku
-</textarea
-        >
+        <div id="editor"></div>
       </div>
 
       <div class="panel">
@@ -237,45 +68,113 @@ chestoone undu {
       </div>
     </div>
 
-    <button class="run-btn" onclick="run()">▶ Run</button>
+    <button class="run-btn" onclick="run()">▶ Run (Shift + Enter)</button>
+    <section class="docs">
+      <h2>📘 Telugitha Documentation</h2>
 
-    <script type="module">
-      import { parse } from "./rules.js";
-      import { compile } from "./compiler-core.js";
-      import formatPeggyError from "./errorFormatter.js";
+      <p>
+        Telugitha is a Telugu-inspired programming language that compiles
+        directly to JavaScript. It is designed to make programming feel
+        natural, readable, and expressive for Telugu speakers while
+        remaining powerful under the hood.
+      </p>
 
-      window.run = function () {
-        const output = document.getElementById("output");
-        output.classList.remove("error");
-        output.textContent = "";
+      <div class="docs-grid">
+        <div class="doc-card">
+          <h3>🟢 Variables</h3>
+          <p>Use <strong>igo</strong> to declare variables.</p>
 
-        const code = document.getElementById("code").value;
+          <pre>
+igo x = 10;
+igo name = "Telugitha";
+</pre
+          >
+        </div>
 
-        try {
-          const ast = parse(code);
-          const js = compile(ast);
+        <div class="doc-card">
+          <h3>🟢 Booleans</h3>
+          <p>Telugitha uses native boolean keywords.</p>
 
-          const logs = [];
-          const fakeConsole = { log: (x) => logs.push(x) };
+          <pre>
+nijam   → true
+abaddam → false
 
-          new Function("console", js)(fakeConsole);
+igo alive = nijam;
+</pre
+          >
+        </div>
 
-          output.textContent = logs.join("\n") || "✅ Program executed.";
-        } catch (e) {
-          output.classList.add("error");
+        <div class="doc-card">
+          <h3>🟢 Conditionals</h3>
+          <p>
+            Use <strong>okavela</strong> for if and
+            <strong>lekunte</strong> for else.
+          </p>
 
-          if (e.location) output.textContent = formatPeggyError(e, code);
-          else output.textContent = "Runtime Error:\n" + e.message;
-        }
-      };
-    </script>
+          <pre>
+okavela alive {
+  chupi("Still breathing");
+} lekunte {
+  chupi("Ghost mode");
+}
+</pre
+          >
+        </div>
+
+        <div class="doc-card">
+          <h3>🟢 Loops</h3>
+          <p>Telugitha supports looping with a natural syntax.</p>
+
+          <pre>
+chestoone undu {
+  chupi(x);
+  x = x + 1;
+} (x < 5) varuku
+</pre
+          >
+        </div>
+
+        <div class="doc-card">
+          <h3>🟢 Printing Output</h3>
+          <p>Use <strong>chupi()</strong> to display values.</p>
+
+          <pre>
+chupi("Hello World");
+</pre
+          >
+        </div>
+
+        <div class="doc-card">
+          <h3>🟢 Operators</h3>
+
+          <pre>
++   addition
+-   subtraction
+*   multiplication
+/   division
+
+==  equal
+!=  not equal
+&lt;   less than
+&gt;   greater than
+</pre
+          >
+        </div>
+      </div>
+    </section>
+
     <div class="footer">
       <div>
         Built with ☕ and obsession by
-        <strong style="color: #e5e7eb">Venkata Lohith Kumar Reddy</strong>
+        <a href="https://lohith-dev.netlify.app/" target="_blank">
+          Venkata Lohith Kumar Reddy
+        </a>
       </div>
 
       <div>Powered by Peggy • Compiles to JavaScript</div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js"></script>
+
+    <script type="module" src="./script.js"></script>
   </body>
 </html>

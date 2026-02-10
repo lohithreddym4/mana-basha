@@ -1,0 +1,286 @@
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+  }
+  
+  html{
+    scroll-behavior:smooth;
+  }
+  
+  body{
+    min-height:100vh;
+    background: radial-gradient(circle at top, #0b1220, #020617);
+    color:#e5e7eb;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  
+  /* ---------------- HEADER ---------------- */
+  
+  .header{
+    width:100%;
+    max-width:1300px;
+    padding:30px 20px;
+  
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  
+  .title{
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:-1px;
+  }
+  
+  .title span{
+    color:#22c55e;
+  }
+  
+  /* ---------------- MAIN GRID ---------------- */
+  
+  .container{
+    width:100%;
+    max-width:1300px;
+    min-height:72vh;
+  
+    display:grid;
+    grid-template-columns: minmax(400px,1.2fr) 1fr;
+    gap:20px;
+  
+    padding:0 20px 20px;
+  }
+  
+  /* ---------------- PANELS ---------------- */
+  
+  .panel{
+    background:#020617;
+    border:1px solid #0f172a;
+    border-radius:14px;
+  
+    display:flex;
+    flex-direction:column;
+  
+    overflow:hidden;
+    box-shadow:0 0 40px rgba(0,0,0,.6);
+  }
+  
+  .panel-header{
+    padding:14px 18px;
+    border-bottom:1px solid #0f172a;
+    font-weight:600;
+    color:#94a3b8;
+  }
+  
+  /* ⭐ Monaco must fill the panel */
+  #editor{
+    flex:1;
+    min-height:500px;
+  }
+  
+  /* ---------------- OUTPUT ---------------- */
+  
+  pre{
+    flex:1;
+    padding:20px;
+    overflow:auto;
+  }
+  
+  .error{
+    color:#f87171;
+  }
+  
+  /* ---------------- RUN BUTTON ---------------- */
+  
+  .run-btn{
+    position:fixed;
+    bottom:30px;
+    right:40px;
+  
+    padding:14px 26px;
+    border:none;
+    border-radius:12px;
+  
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+  
+    color:black;
+    background:#22c55e;
+  
+    transition:.2s;
+    box-shadow:0 0 20px rgba(34,197,94,.4);
+  }
+  
+  .run-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 30px rgba(34,197,94,.6);
+  }
+  
+  .run-btn:active{
+    transform:scale(.96);
+  }
+  
+  /* ---------------- SCROLLBAR ---------------- */
+  
+  ::-webkit-scrollbar{
+    width:10px;
+  }
+  
+  ::-webkit-scrollbar-thumb{
+    background:#0f172a;
+    border-radius:10px;
+  }
+  
+  /* ---------------- FOOTER ---------------- */
+  
+  .footer{
+    width:100%;
+    max-width:1300px;
+    padding:18px 20px;
+    margin-top:auto;
+  
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  
+    color:#64748b;
+    font-size:14px;
+  
+    border-top:1px solid #0f172a;
+  }
+  
+  .footer a{
+    color:#22c55e;
+    text-decoration:none;
+    font-weight:600;
+  }
+  
+  .footer a:hover{
+    color:#4ade80;
+  }
+  
+  /* ---------------- DOCUMENTATION ---------------- */
+  
+  .docs{
+    width:100%;
+    max-width:1300px;
+    margin-top:40px;
+    padding:40px 20px;
+    border-top:1px solid #0f172a;
+  }
+  
+  .docs h2{
+    font-size:26px;
+    margin-bottom:10px;
+  }
+  
+  .docs p{
+    color:#94a3b8;
+    margin-bottom:18px;
+    line-height:1.7;
+  }
+  
+  .docs-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+  }
+  
+  .doc-card{
+    background:#020617;
+    border:1px solid #0f172a;
+    border-radius:14px;
+    padding:20px;
+  }
+  
+  .doc-card h3{
+    margin-bottom:10px;
+    color:#22c55e;
+  }
+  
+  .doc-card pre{
+    background:#010409;
+    padding:14px;
+    border-radius:8px;
+    margin-top:10px;
+  }
+  
+  /* ---------------- ULTRAWIDE ---------------- */
+  
+  @media (min-width:1600px){
+  
+    .container,
+    .header,
+    .footer,
+    .docs{
+      max-width:1500px;
+    }
+  
+  }
+  
+  /* ---------------- TABLET ---------------- */
+  
+  @media (max-width:1024px){
+  
+    .container{
+      grid-template-columns:1fr;
+    }
+  
+    #editor{
+      min-height:420px;
+    }
+  
+  }
+  
+  /* ---------------- MOBILE ---------------- */
+  
+  @media (max-width:768px){
+  
+    .header{
+      flex-direction:column;
+      gap:10px;
+      text-align:center;
+    }
+  
+    .run-btn{
+      bottom:20px;
+      right:20px;
+      padding:12px 18px;
+      font-size:14px;
+    }
+  
+    .footer{
+      flex-direction:column;
+      gap:8px;
+      text-align:center;
+    }
+  
+    .docs-grid{
+      grid-template-columns:1fr;
+    }
+  
+  }
+  
+  /* ---------------- SMALL PHONES ---------------- */
+  
+  @media (max-width:480px){
+  
+    .title{
+      font-size:22px;
+    }
+  
+    #editor{
+      min-height:350px;
+    }
+  
+    .panel-header{
+      font-size:14px;
+    }
+  
+  }
+  
