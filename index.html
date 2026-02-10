@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mana Basha Playground</title>
+
+  <style>
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      height:100vh;
+      background: radial-gradient(circle at top, #0b1220, #020617);
+      color:#e5e7eb;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    /* HEADER */
+
+    .header{
+      width:100%;
+      max-width:1200px;
+      padding:30px 20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .title{
+      font-size:28px;
+      font-weight:700;
+      letter-spacing:-1px;
+    }
+
+    .title span{
+      color:#22c55e;
+    }
+
+    /* MAIN GRID */
+
+    .container{
+      width:100%;
+      max-width:1200px;
+      height:75vh;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:20px;
+      padding:0 20px 20px;
+    }
+
+    /* EDITOR */
+
+    .panel{
+      background:#020617;
+      border:1px solid #0f172a;
+      border-radius:14px;
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+      box-shadow:0 0 40px rgba(0,0,0,.6);
+    }
+
+    .panel-header{
+      padding:14px 18px;
+      border-bottom:1px solid #0f172a;
+      font-weight:600;
+      color:#94a3b8;
+      background:#020617;
+    }
+
+    textarea{
+      flex:1;
+      background:transparent;
+      color:#22c55e;
+      border:none;
+      padding:20px;
+      font-size:15px;
+      resize:none;
+      outline:none;
+      line-height:1.6;
+      caret-color:#22c55e;
+    }
+
+    textarea::selection{
+      background:#064e3b;
+    }
+
+    /* OUTPUT */
+
+    pre{
+      flex:1;
+      padding:20px;
+      overflow:auto;
+      color:#e5e7eb;
+    }
+
+    .error{
+      color:#f87171;
+    }
+
+    /* BUTTON */
+
+    .run-btn{
+      position:fixed;
+      bottom:30px;
+      right:40px;
+      padding:14px 26px;
+      border:none;
+      border-radius:12px;
+      font-size:16px;
+      font-weight:600;
+      cursor:pointer;
+
+      color:black;
+      background:#22c55e;
+
+      transition:.2s;
+      box-shadow:0 0 20px rgba(34,197,94,.4);
+    }
+
+    .run-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 6px 30px rgba(34,197,94,.6);
+    }
+
+    .run-btn:active{
+      transform:scale(.96);
+    }
+
+    /* SCROLLBAR */
+
+    ::-webkit-scrollbar{
+      width:10px;
+    }
+
+    ::-webkit-scrollbar-thumb{
+      background:#0f172a;
+      border-radius:10px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="title">🔥 <span>Mana</span> Basha Playground</div>
+    <div style="color:#64748b">Telugu Programming Language</div>
+  </div>
+
+  <div class="container">
+
+    <div class="panel">
+      <div class="panel-header">Editor</div>
+      <textarea id="code">
+igo x = 5;
+igo alive = nijam;
+
+okavela alive {
+  chupi("Still breathing");
+} lekunte {
+  chupi("Ghost mode");
+}
+
+chestoone undu {
+  chupi(x);
+  x = x + 1;
+} (x < 8) varuku
+</textarea>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">Output</div>
+      <pre id="output"></pre>
+    </div>
+
+  </div>
+
+  <button class="run-btn" onclick="run()">▶ Run</button>
+
+<script type="module">
+
+import { parse } from "./rules.js";
+import { compile } from "./compiler-core.js";
+import formatPeggyError from "./errorFormatter.js";
+
+window.run = function(){
+
+  const output = document.getElementById("output");
+  output.classList.remove("error");
+  output.textContent="";
+
+  const code = document.getElementById("code").value;
+
+  try{
+
+    const ast = parse(code);
+    const js = compile(ast);
+
+    const logs=[];
+    const fakeConsole={log:(x)=>logs.push(x)};
+
+    new Function("console", js)(fakeConsole);
+
+    output.textContent = logs.join("\n") || "✅ Program executed.";
+
+  }catch(e){
+
+    output.classList.add("error");
+
+    if(e.location)
+        output.textContent = formatPeggyError(e, code);
+    else
+        output.textContent = "Runtime Error:\n"+e.message;
+  }
+}
+
+</script>
+
+</body>
+</html>

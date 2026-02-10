@@ -1,0 +1,13 @@
+igo x = 5;
+igo alive = abaddama;
+
+okavela alive {
+  chupi("Still breathing");
+} lekunte {
+  chupi("Ghost mode");
+}
+
+chestoone undu {
+  chupi(x);
+  x = x + 1;
+} (x < 8) varuku

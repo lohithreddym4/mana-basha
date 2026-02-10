@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start":"node compiler.js && node out.js"
+  },
+  "dependencies": {
+    "nodemon": "^3.0.2",
+    "pegjs": "^0.10.0"
+  }
+}
