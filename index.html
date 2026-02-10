@@ -1,164 +1,219 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Mana Basha Playground</title>
+  <head>
+    <head>
+      <!-- Primary SEO -->
+      <title>Telugitha – Telugu Programming Language Playground</title>
 
-  <style>
+      <meta name="title" content="Telugitha – Telugu Programming Language" />
+      <meta
+        name="description"
+        content="Telugitha is a Telugu-inspired programming language that compiles to JavaScript. Write code in Telugu, run it instantly in your browser, and explore language design." />
+      <meta
+        name="keywords"
+        content="Telugu programming language, Indian programming language, learn compilers, programming playground, Telugu code, javascript compiler, programming language experiment" />
+      <meta name="author" content="Venkata Lohith Kumar Reddy" />
 
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-    }
+      <!-- Mobile -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    body{
-      height:100vh;
-      background: radial-gradient(circle at top, #0b1220, #020617);
-      color:#e5e7eb;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-    }
+      <!-- Robots -->
+      <meta name="robots" content="index, follow" />
 
-    /* HEADER */
+      <!-- Open Graph (VERY IMPORTANT for sharing) -->
+      <meta
+        property="og:title"
+        content="Telugitha – Telugu Programming Language" />
+      <meta
+        property="og:description"
+        content="Write programs in Telugu. Compile to JavaScript instantly. Explore how programming languages are built." />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://telugitha.netlify.app" />
 
-    .header{
-      width:100%;
-      max-width:1200px;
-      padding:30px 20px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-    }
+      <!-- Twitter -->
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta
+        name="twitter:title"
+        content="Telugitha – Telugu Programming Language" />
+      <meta
+        name="twitter:description"
+        content="A Telugu-inspired programming language running entirely in your browser." />
 
-    .title{
-      font-size:28px;
-      font-weight:700;
-      letter-spacing:-1px;
-    }
+      <!-- Theme color for browsers -->
+      <meta name="theme-color" content="#020617" />
+    </head>
 
-    .title span{
-      color:#22c55e;
-    }
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-    /* MAIN GRID */
+      body {
+        height: 100vh;
+        background: radial-gradient(circle at top, #0b1220, #020617);
+        color: #e5e7eb;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-    .container{
-      width:100%;
-      max-width:1200px;
-      height:75vh;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:20px;
-      padding:0 20px 20px;
-    }
+      /* HEADER */
 
-    /* EDITOR */
+      .header {
+        width: 100%;
+        max-width: 1200px;
+        padding: 30px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-    .panel{
-      background:#020617;
-      border:1px solid #0f172a;
-      border-radius:14px;
-      display:flex;
-      flex-direction:column;
-      overflow:hidden;
-      box-shadow:0 0 40px rgba(0,0,0,.6);
-    }
+      .title {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -1px;
+      }
 
-    .panel-header{
-      padding:14px 18px;
-      border-bottom:1px solid #0f172a;
-      font-weight:600;
-      color:#94a3b8;
-      background:#020617;
-    }
+      .title span {
+        color: #22c55e;
+      }
 
-    textarea{
-      flex:1;
-      background:transparent;
-      color:#22c55e;
-      border:none;
-      padding:20px;
-      font-size:15px;
-      resize:none;
-      outline:none;
-      line-height:1.6;
-      caret-color:#22c55e;
-    }
+      /* MAIN GRID */
 
-    textarea::selection{
-      background:#064e3b;
-    }
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        height: 75vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        padding: 0 20px 20px;
+      }
 
-    /* OUTPUT */
+      /* EDITOR */
 
-    pre{
-      flex:1;
-      padding:20px;
-      overflow:auto;
-      color:#e5e7eb;
-    }
+      .panel {
+        background: #020617;
+        border: 1px solid #0f172a;
+        border-radius: 14px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+      }
 
-    .error{
-      color:#f87171;
-    }
+      .panel-header {
+        padding: 14px 18px;
+        border-bottom: 1px solid #0f172a;
+        font-weight: 600;
+        color: #94a3b8;
+        background: #020617;
+      }
 
-    /* BUTTON */
+      textarea {
+        flex: 1;
+        background: transparent;
+        color: #22c55e;
+        border: none;
+        padding: 20px;
+        font-size: 15px;
+        resize: none;
+        outline: none;
+        line-height: 1.6;
+        caret-color: #22c55e;
+      }
 
-    .run-btn{
-      position:fixed;
-      bottom:30px;
-      right:40px;
-      padding:14px 26px;
-      border:none;
-      border-radius:12px;
-      font-size:16px;
-      font-weight:600;
-      cursor:pointer;
+      textarea::selection {
+        background: #064e3b;
+      }
 
-      color:black;
-      background:#22c55e;
+      /* OUTPUT */
 
-      transition:.2s;
-      box-shadow:0 0 20px rgba(34,197,94,.4);
-    }
+      pre {
+        flex: 1;
+        padding: 20px;
+        overflow: auto;
+        color: #e5e7eb;
+      }
 
-    .run-btn:hover{
-      transform:translateY(-2px);
-      box-shadow:0 6px 30px rgba(34,197,94,.6);
-    }
+      .error {
+        color: #f87171;
+      }
 
-    .run-btn:active{
-      transform:scale(.96);
-    }
+      /* BUTTON */
 
-    /* SCROLLBAR */
+      .run-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 40px;
+        padding: 14px 26px;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
 
-    ::-webkit-scrollbar{
-      width:10px;
-    }
+        color: black;
+        background: #22c55e;
 
-    ::-webkit-scrollbar-thumb{
-      background:#0f172a;
-      border-radius:10px;
-    }
+        transition: 0.2s;
+        box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+      }
 
-  </style>
-</head>
+      .run-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 30px rgba(34, 197, 94, 0.6);
+      }
 
-<body>
+      .run-btn:active {
+        transform: scale(0.96);
+      }
 
-  <div class="header">
-    <div class="title">🔥 <span>Mana</span> Basha Playground</div>
-    <div style="color:#64748b">Telugu Programming Language</div>
-  </div>
+      /* SCROLLBAR */
 
-  <div class="container">
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
 
-    <div class="panel">
-      <div class="panel-header">Editor</div>
-      <textarea id="code">
+      ::-webkit-scrollbar-thumb {
+        background: #0f172a;
+        border-radius: 10px;
+      }
+      .footer {
+        width: 100%;
+        max-width: 1200px;
+        padding: 18px 20px;
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        color: #64748b;
+        font-size: 14px;
+      }
+
+      .footer a {
+        color: #22c55e;
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="header">
+      <div class="title">🔥 <span>Mana</span> Basha Playground</div>
+      <div style="color: #64748b">Telugu Programming Language</div>
+    </div>
+
+    <div class="container">
+      <div class="panel">
+        <div class="panel-header">Editor</div>
+        <textarea id="code">
 igo x = 5;
 igo alive = nijam;
 
@@ -172,56 +227,55 @@ chestoone undu {
   chupi(x);
   x = x + 1;
 } (x < 8) varuku
-</textarea>
+</textarea
+        >
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">Output</div>
+        <pre id="output"></pre>
+      </div>
     </div>
 
-    <div class="panel">
-      <div class="panel-header">Output</div>
-      <pre id="output"></pre>
+    <button class="run-btn" onclick="run()">▶ Run</button>
+
+    <script type="module">
+      import { parse } from "./rules.js";
+      import { compile } from "./compiler-core.js";
+      import formatPeggyError from "./errorFormatter.js";
+
+      window.run = function () {
+        const output = document.getElementById("output");
+        output.classList.remove("error");
+        output.textContent = "";
+
+        const code = document.getElementById("code").value;
+
+        try {
+          const ast = parse(code);
+          const js = compile(ast);
+
+          const logs = [];
+          const fakeConsole = { log: (x) => logs.push(x) };
+
+          new Function("console", js)(fakeConsole);
+
+          output.textContent = logs.join("\n") || "✅ Program executed.";
+        } catch (e) {
+          output.classList.add("error");
+
+          if (e.location) output.textContent = formatPeggyError(e, code);
+          else output.textContent = "Runtime Error:\n" + e.message;
+        }
+      };
+    </script>
+    <div class="footer">
+      <div>
+        Built with ☕ and obsession by
+        <strong style="color: #e5e7eb">Venkata Lohith Kumar Reddy</strong>
+      </div>
+
+      <div>Powered by Peggy • Compiles to JavaScript</div>
     </div>
-
-  </div>
-
-  <button class="run-btn" onclick="run()">▶ Run</button>
-
-<script type="module">
-
-import { parse } from "./rules.js";
-import { compile } from "./compiler-core.js";
-import formatPeggyError from "./errorFormatter.js";
-
-window.run = function(){
-
-  const output = document.getElementById("output");
-  output.classList.remove("error");
-  output.textContent="";
-
-  const code = document.getElementById("code").value;
-
-  try{
-
-    const ast = parse(code);
-    const js = compile(ast);
-
-    const logs=[];
-    const fakeConsole={log:(x)=>logs.push(x)};
-
-    new Function("console", js)(fakeConsole);
-
-    output.textContent = logs.join("\n") || "✅ Program executed.";
-
-  }catch(e){
-
-    output.classList.add("error");
-
-    if(e.location)
-        output.textContent = formatPeggyError(e, code);
-    else
-        output.textContent = "Runtime Error:\n"+e.message;
-  }
-}
-
-</script>
-
-</body>
+  </body>
 </html>
