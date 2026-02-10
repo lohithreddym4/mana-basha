@@ -71,97 +71,162 @@
     <button class="run-btn" onclick="run()">▶ Run (Shift + Enter)</button>
     <section class="docs">
       <h2>📘 Telugitha Documentation</h2>
-
+    
       <p>
         Telugitha is a Telugu-inspired programming language that compiles
         directly to JavaScript. It is designed to make programming feel
         natural, readable, and expressive for Telugu speakers while
         remaining powerful under the hood.
       </p>
-
+    
       <div class="docs-grid">
+    
+        <!-- VARIABLES -->
         <div class="doc-card">
           <h3>🟢 Variables</h3>
           <p>Use <strong>igo</strong> to declare variables.</p>
-
           <pre>
-igo x = 10;
-igo name = "Telugitha";
-</pre
-          >
+    igo x = 10;
+    igo name = "Telugitha";
+          </pre>
         </div>
-
+    
+        <!-- BOOLEANS -->
         <div class="doc-card">
           <h3>🟢 Booleans</h3>
-          <p>Telugitha uses native boolean keywords.</p>
-
+          <p>Telugitha has native boolean keywords.</p>
           <pre>
-nijam   → true
-abaddam → false
-
-igo alive = nijam;
-</pre
-          >
+    nijam   → true
+    abaddam → false
+    
+    igo alive = nijam;
+          </pre>
         </div>
-
+    
+        <!-- STRINGS -->
+        <div class="doc-card">
+          <h3>🟢 Strings</h3>
+          <p>Strings are written using double quotes.</p>
+          <pre>
+    igo name = "lohith";
+    chupi(name);
+          </pre>
+        </div>
+    
+        <!-- STRING INDEXING -->
+        <div class="doc-card">
+          <h3>🟢 String Indexing</h3>
+          <p>Access characters using index notation.</p>
+          <pre>
+    igo word = "hello";
+    chupi(word[0]);   // h
+    chupi(word[1]);   // e
+          </pre>
+        </div>
+    
+        <!-- CONDITIONALS -->
         <div class="doc-card">
           <h3>🟢 Conditionals</h3>
           <p>
             Use <strong>okavela</strong> for if and
             <strong>lekunte</strong> for else.
           </p>
-
           <pre>
-okavela alive {
-  chupi("Still breathing");
-} lekunte {
-  chupi("Ghost mode");
-}
-</pre
-          >
+    okavela x > 5 {
+      chupi("Greater");
+    } lekunte {
+      chupi("Smaller");
+    }
+          </pre>
         </div>
-
+    
+        <!-- LOOPS -->
         <div class="doc-card">
           <h3>🟢 Loops</h3>
-          <p>Telugitha supports looping with a natural syntax.</p>
-
+          <p>Repeat code while a condition is true.</p>
           <pre>
-chestoone undu {
-  chupi(x);
-  x = x + 1;
-} (x < 5) varuku
-</pre
-          >
+    igo i = 0;
+    
+    chestoone undu {
+      chupi(i);
+      i = i + 1;
+    } (i < 5) varuku
+          </pre>
         </div>
-
-        <div class="doc-card">
-          <h3>🟢 Printing Output</h3>
-          <p>Use <strong>chupi()</strong> to display values.</p>
-
-          <pre>
-chupi("Hello World");
-</pre
-          >
-        </div>
-
+    
+        <!-- OPERATORS -->
         <div class="doc-card">
           <h3>🟢 Operators</h3>
-
           <pre>
-+   addition
--   subtraction
-*   multiplication
-/   division
-
-==  equal
-!=  not equal
-&lt;   less than
-&gt;   greater than
-</pre
-          >
+    +   addition
+    -   subtraction
+    *   multiplication
+    /   division
+    %   modulus
+    
+    ==  equal
+    !=  not equal
+    <   less than
+    >   greater than
+    <=  less than or equal
+    >=  greater than or equal
+          </pre>
         </div>
+    
+        <!-- TRUTHY CONDITIONS -->
+        <div class="doc-card">
+          <h3>🟢 Truthy Conditions</h3>
+          <p>Any expression can be used directly in conditions.</p>
+          <pre>
+    igo alive = nijam;
+    
+    okavela alive {
+      chupi("Alive!");
+    }
+          </pre>
+        </div>
+    
+        <!-- PRINTING -->
+        <div class="doc-card">
+          <h3>🟢 Printing Output</h3>
+          <p>Use <strong>chupi()</strong> to print output.</p>
+          <pre>
+    chupi("Hello World");
+    chupi(10 + 20);
+          </pre>
+        </div>
+    
+        <!-- EXAMPLE -->
+        <div class="doc-card">
+          <h3>🟢 Example: Palindrome</h3>
+          <p>A complete Telugitha program.</p>
+          <pre>
+    igo word = "madam";
+    igo start = 0;
+    igo end = word.length - 1;
+    igo palindrome = nijam;
+    
+    chestoone undu {
+      okavela word[start] != word[end] {
+        palindrome = abaddam;
+        start = end;
+      } lekunte {
+        start = start + 1;
+        end = end - 1;
+      }
+    } (start < end) varuku
+    
+    okavela palindrome {
+      chupi("Palindrome");
+    } lekunte {
+      chupi("Not Palindrome");
+    }
+          </pre>
+        </div>
+    
       </div>
     </section>
+    
 
     <div class="footer">
       <div>

@@ -13,7 +13,7 @@ Statement
     }
 
 VariableDeclaration
-  = "igo" __ name:Identifier __ "=" __ value:Expression ";" {
+  = "igo" __ name:Identifier _ "=" _ value:Expression ";" {
       return { type: "VarDecl", name, value };
     }
 
@@ -53,6 +53,7 @@ Comparison
 Expression
   = Additive
 
+
 Additive
   = left:Multiplicative rest:(_ ("+" / "-") _ Multiplicative)* {
       return rest.reduce((acc, r) => ({
@@ -63,8 +64,9 @@ Additive
       }), left);
     }
 
+
 Multiplicative
-  = left:Primary rest:(_ ("*" / "/") _ Primary)* {
+  = left:Postfix rest:(_ ("*" / "/" / "%") _ Postfix)* {
       return rest.reduce((acc, r) => ({
         type: "Binary",
         op: r[1],
@@ -73,12 +75,68 @@ Multiplicative
       }), left);
     }
 
+
+Postfix
+  = obj:Primary ops:(
+        idx:IndexOp
+      / prop:PropertyOp
+    )* {
+
+      return ops.reduce((acc, op) => {
+
+        if (op.type === "IndexOp") {
+          return {
+            type: "Index",
+            object: acc,
+            index: op.index
+          };
+        }
+
+        if (op.type === "PropertyOp") {
+          return {
+            type: "Property",
+            object: acc,
+            property: op.name
+          };
+        }
+
+      }, obj);
+    }
+
+
+IndexOp
+  = "[" _ expr:Expression _ "]" {
+      return {
+        type: "IndexOp",
+        index: expr
+      };
+    }
+
+
+PropertyOp
+  = "." id:Identifier {
+      return {
+        type: "PropertyOp",
+        name: id.name
+      };
+    }
+
 Primary
   = Boolean
   / Number
   / String
   / Identifier
   / "(" _ Expression _ ")"
+
+Index
+  = obj:Primary rest:("[" _ Expression _ "]")* {
+      return rest.reduce((acc, r) => ({
+        type: "Index",
+        object: acc,
+        index: r[2]
+      }), obj);
+    }
+
 
 Boolean
   = "nijam" { return { type: "Boolean", value: true }; }

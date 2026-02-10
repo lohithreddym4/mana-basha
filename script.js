@@ -4,7 +4,7 @@ import formatPeggyError from "./errorFormatter.js";
 
 let editor;
 
-// Monaco loader
+// Monaco loader (AMD)
 require.config({
   paths: {
     vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs",
@@ -13,7 +13,7 @@ require.config({
 
 require(["vs/editor/editor.main"], function () {
 
-  // --- Register Telugitha language ---
+  // Register language
   monaco.languages.register({ id: "telugitha" });
 
   monaco.languages.setMonarchTokensProvider("telugitha", {
@@ -27,7 +27,7 @@ require(["vs/editor/editor.main"], function () {
     },
   });
 
-  // --- Theme ---
+  // Theme
   monaco.editor.defineTheme("telugitha-dark", {
     base: "vs-dark",
     inherit: true,
@@ -41,21 +41,30 @@ require(["vs/editor/editor.main"], function () {
     },
   });
 
-  // --- Create editor ---
+  // Create editor
   editor = monaco.editor.create(document.getElementById("editor"), {
-    value: `igo x = 5;
-igo alive = nijam;
-
-okavela alive {
-  chupi("Still breathing");
-} lekunte {
-  chupi("Ghost mode");
-}
+    value: `igo word = "madam";
+igo start = 0;
+igo end = word.length - 1;
+igo palindrome = nijam;
 
 chestoone undu {
-  chupi(x);
-  x = x + 1;
-} (x < 8) varuku`,
+
+  okavela word[start] != word[end] {
+    palindrome = abaddam;
+    start = end;
+  } lekunte {
+    start = start + 1;
+    end = end - 1;
+  }
+
+} (start < end) varuku
+
+okavela palindrome {
+  chupi("Palindrome ra baabu");
+} lekunte {
+  chupi("Palindrome kaadu");
+}`,
     language: "telugitha",
     theme: "telugitha-dark",
     fontSize: 15,
@@ -63,15 +72,16 @@ chestoone undu {
     automaticLayout: true,
   });
 
-});
-
-document.addEventListener("keydown", (e) => {
-  if (e.shiftKey && e.key === "Enter") {
-    run();
-  }
+  // ✅ Monaco-native keybinding: Shift + Enter → Run
+  editor.addCommand(
+    monaco.KeyMod.Shift | monaco.KeyCode.Enter,
+    () => run()
+  );
 });
 
 window.run = function () {
+  if (!editor) return; // safety
+
   const output = document.getElementById("output");
   output.classList.remove("error");
   output.textContent = "";
@@ -83,7 +93,7 @@ window.run = function () {
     const js = compile(ast);
 
     const logs = [];
-    const fakeConsole = { log: (x) => logs.push(x) };
+    const fakeConsole = { log: (x) => logs.push(String(x)) };
 
     new Function("console", js)(fakeConsole);
 
@@ -91,7 +101,9 @@ window.run = function () {
   } catch (e) {
     output.classList.add("error");
 
-    if (e.location) output.textContent = formatPeggyError(e, code);
-    else output.textContent = "Runtime Error:\n" + e.message;
+    if (e.location)
+      output.textContent = formatPeggyError(e, code);
+    else
+      output.textContent = "Runtime Error:\n" + e.message;
   }
 };
