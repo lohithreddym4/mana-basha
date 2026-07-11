@@ -125,8 +125,17 @@ Primary
   = Boolean
   / Number
   / String
+  / InputCall
   / Identifier
   / "(" _ Expression _ ")"
+
+InputCall
+  = "adugu" _ "(" _ prompt:Expression? _ ")" {
+      return {
+        type: "Input",
+        prompt: prompt || { type: "String", value: "Input" }
+      };
+    }
 
 Index
   = obj:Primary rest:("[" _ Expression _ "]")* {
@@ -150,6 +159,7 @@ Identifier
 Keyword
   = "igo"
   / "chupi"
+  / "adugu"
   / "okavela"
   / "lekunte"
   / "chestoone"

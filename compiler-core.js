@@ -28,6 +28,9 @@ export function compile(ast) {
             case "Property":
                 return `${compileExpr(node.object)}.${node.property}`;
 
+            case "Input":
+                return `input(String(${compileExpr(node.prompt)}))`;
+
             default:
                 throw new Error("Unknown expression type: " + node.type);
         }

@@ -8,7 +8,7 @@ const examples = {
   palindrome: `igo word = "madam";
 igo start = 0;
 igo end = word.length - 1;
-igo palindrome = nijam;
+igo palindrome = adugu("Oka padham cheppu");
 
 chestoone undu {
 
@@ -35,6 +35,11 @@ chestoone undu {
 } (i <= 5) varuku
 
 chupi("Mana basha wins.");`,
+  input: `igo name = adugu("Mee peru");
+igo language = adugu("Mee basha");
+
+chupi("Namaskaram " + name);
+chupi(language + " supremacy starts with code.");`,
 };
 
 require.config({
@@ -49,7 +54,7 @@ require(["vs/editor/editor.main"], function () {
   monaco.languages.setMonarchTokensProvider("telugitha", {
     tokenizer: {
       root: [
-        [/\b(igo|okavela|lekunte|chestoone|undu|varuku|chupi|nijam|abaddam)\b/, "keyword"],
+        [/\b(igo|okavela|lekunte|chestoone|undu|varuku|chupi|adugu|nijam|abaddam)\b/, "keyword"],
         [/[0-9]+/, "number"],
         [/".*?"/, "string"],
         [/[a-zA-Z_][a-zA-Z0-9_]*/, "identifier"],
@@ -120,8 +125,22 @@ window.run = function () {
 
     const logs = [];
     const fakeConsole = { log: (x) => logs.push(String(x)) };
+    const inputValues = getRuntimeInputs();
+    let inputIndex = 0;
+    const input = (label) => {
+      const value = inputValues[inputIndex];
+      logs.push(`? ${label}`);
+      inputIndex += 1;
 
-    new Function("console", js)(fakeConsole);
+      if (value === undefined) {
+        throw new Error(`Input kavali: ${label}`);
+      }
+
+      logs.push(`> ${value}`);
+      return value;
+    };
+
+    new Function("console", "input", js)(fakeConsole, input);
 
     output.textContent = logs.join("\n") || "Program executed.";
     setStatus("Success");
@@ -137,4 +156,9 @@ window.run = function () {
 function setStatus(label) {
   const status = document.getElementById("run-status");
   if (status) status.textContent = label;
+}
+
+function getRuntimeInputs() {
+  const source = document.getElementById("runtime-input")?.value ?? "";
+  return source === "" ? [] : source.split(/\r?\n/);
 }

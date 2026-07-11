@@ -109,6 +109,7 @@
           <div class="toolbar">
             <button class="sample-btn" type="button" data-example="palindrome">Palindrome</button>
             <button class="sample-btn" type="button" data-example="count">Counter</button>
+            <button class="sample-btn" type="button" data-example="input">Input</button>
             <button class="run-btn" type="button" onclick="run()">
               <span aria-hidden="true">▶</span>
               Run
@@ -133,6 +134,25 @@
             <pre id="output">Run the sample to see Telugitha speak.</pre>
           </section>
         </div>
+
+        <section class="input-deck" aria-label="Program input queue">
+          <div>
+            <p class="eyebrow">Dynamic input</p>
+            <h3>Feed values into <code>adugu()</code>.</h3>
+          </div>
+          <label class="input-field">
+            <span>Input values</span>
+            <textarea
+              id="runtime-input"
+              rows="3"
+              spellcheck="false"
+              placeholder="Lohith&#10;Telugitha" ></textarea>
+          </label>
+          <p>
+            Each line is consumed in order whenever your program calls
+            <strong>adugu()</strong>. Empty lines count as input too.
+          </p>
+        </section>
       </section>
 
       <section class="docs" id="docs">
@@ -184,6 +204,13 @@ chestoone undu {
             <p>Use <strong>chupi()</strong> to print visible program output.</p>
             <pre><code>chupi("Hello World");
 chupi(10 + 20);</code></pre>
+          </article>
+
+          <article class="doc-card">
+            <h3>Input</h3>
+            <p>Use <strong>adugu()</strong> to read the next queued input value.</p>
+            <pre><code>igo name = adugu("Name");
+chupi("Namaskaram " + name);</code></pre>
           </article>
 
           <article class="doc-card">

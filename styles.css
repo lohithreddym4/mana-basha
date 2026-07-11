@@ -358,6 +358,73 @@ h1 {
   gap: 1rem;
 }
 
+.input-deck {
+  display: grid;
+  grid-template-columns: minmax(13rem, 0.75fr) minmax(18rem, 1fr) minmax(14rem, 0.75fr);
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(120deg, rgba(54, 211, 153, 0.12), transparent 40%),
+    rgba(14, 20, 32, 0.86);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.input-deck h3 {
+  margin-top: 0.35rem;
+  font-size: 1.25rem;
+}
+
+.input-deck code {
+  color: var(--leaf);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.input-deck p {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.input-deck strong {
+  color: var(--saffron);
+}
+
+.input-field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.input-field span {
+  color: var(--faint);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.input-field textarea {
+  width: 100%;
+  min-height: 5.75rem;
+  resize: vertical;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: #070a10;
+  border-radius: 0.7rem;
+  color: var(--text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  outline: none;
+  padding: 0.85rem;
+}
+
+.input-field textarea:focus {
+  border-color: rgba(54, 211, 153, 0.62);
+  box-shadow: 0 0 0 3px rgba(54, 211, 153, 0.12);
+}
+
 .panel {
   display: flex;
   min-height: 36rem;
@@ -499,6 +566,7 @@ pre {
 @media (max-width: 1100px) {
   .hero,
   .container,
+  .input-deck,
   .docs-grid {
     grid-template-columns: 1fr;
   }
@@ -557,6 +625,10 @@ pre {
   }
 
   .container {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .input-deck {
     grid-template-columns: minmax(0, 1fr);
   }
 
