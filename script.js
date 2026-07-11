@@ -93,6 +93,7 @@ require(["vs/editor/editor.main"], function () {
     automaticLayout: true,
     fontLigatures: true,
     smoothScrolling: true,
+    scrollBeyondLastLine: false,
   });
 
   editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => run());
