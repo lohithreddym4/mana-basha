@@ -4,46 +4,8 @@ import formatPeggyError from "./errorFormatter.js";
 
 let editor;
 
-// Monaco loader (AMD)
-require.config({
-  paths: {
-    vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs",
-  },
-});
-
-require(["vs/editor/editor.main"], function () {
-
-  // Register language
-  monaco.languages.register({ id: "telugitha" });
-
-  monaco.languages.setMonarchTokensProvider("telugitha", {
-    tokenizer: {
-      root: [
-        [/\b(igo|okavela|lekunte|chestoone|undu|varuku|chupi|nijam|abaddam)\b/, "keyword"],
-        [/[0-9]+/, "number"],
-        [/".*?"/, "string"],
-        [/[a-zA-Z_][a-zA-Z0-9_]*/, "identifier"],
-      ],
-    },
-  });
-
-  // Theme
-  monaco.editor.defineTheme("telugitha-dark", {
-    base: "vs-dark",
-    inherit: true,
-    rules: [
-      { token: "keyword", foreground: "22c55e" },
-      { token: "number", foreground: "60a5fa" },
-      { token: "string", foreground: "fbbf24" },
-    ],
-    colors: {
-      "editor.background": "#020617",
-    },
-  });
-
-  // Create editor
-  editor = monaco.editor.create(document.getElementById("editor"), {
-    value: `igo word = "madam";
+const examples = {
+  palindrome: `igo word = "madam";
 igo start = 0;
 igo end = word.length - 1;
 igo palindrome = nijam;
@@ -65,26 +27,90 @@ okavela palindrome {
 } lekunte {
   chupi("Palindrome kaadu");
 }`,
+  count: `igo i = 1;
+
+chestoone undu {
+  chupi("Telugitha count: " + i);
+  i = i + 1;
+} (i <= 5) varuku
+
+chupi("Mana basha wins.");`,
+};
+
+require.config({
+  paths: {
+    vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs",
+  },
+});
+
+require(["vs/editor/editor.main"], function () {
+  monaco.languages.register({ id: "telugitha" });
+
+  monaco.languages.setMonarchTokensProvider("telugitha", {
+    tokenizer: {
+      root: [
+        [/\b(igo|okavela|lekunte|chestoone|undu|varuku|chupi|nijam|abaddam)\b/, "keyword"],
+        [/[0-9]+/, "number"],
+        [/".*?"/, "string"],
+        [/[a-zA-Z_][a-zA-Z0-9_]*/, "identifier"],
+      ],
+    },
+  });
+
+  monaco.editor.defineTheme("telugitha-dark", {
+    base: "vs-dark",
+    inherit: true,
+    rules: [
+      { token: "keyword", foreground: "f5a524", fontStyle: "bold" },
+      { token: "number", foreground: "56a7ff" },
+      { token: "string", foreground: "36d399" },
+      { token: "identifier", foreground: "e5edf7" },
+    ],
+    colors: {
+      "editor.background": "#0b101a",
+      "editor.foreground": "#e5edf7",
+      "editor.lineHighlightBackground": "#151f2f",
+      "editorCursor.foreground": "#f5a524",
+      "editorLineNumber.foreground": "#526074",
+      "editorLineNumber.activeForeground": "#f5a524",
+      "editor.selectionBackground": "#2c4a63",
+    },
+  });
+
+  editor = monaco.editor.create(document.getElementById("editor"), {
+    value: examples.palindrome,
     language: "telugitha",
     theme: "telugitha-dark",
     fontSize: 15,
+    lineHeight: 24,
+    padding: { top: 18, bottom: 18 },
     minimap: { enabled: false },
     automaticLayout: true,
+    fontLigatures: true,
+    smoothScrolling: true,
   });
 
-  // ✅ Monaco-native keybinding: Shift + Enter → Run
-  editor.addCommand(
-    monaco.KeyMod.Shift | monaco.KeyCode.Enter,
-    () => run()
-  );
+  editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => run());
+});
+
+document.querySelectorAll("[data-example]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const nextExample = examples[button.dataset.example];
+    if (!editor || !nextExample) return;
+
+    editor.setValue(nextExample);
+    editor.focus();
+    setStatus("Loaded");
+  });
 });
 
 window.run = function () {
-  if (!editor) return; // safety
+  if (!editor) return;
 
   const output = document.getElementById("output");
   output.classList.remove("error");
   output.textContent = "";
+  setStatus("Running");
 
   const code = editor.getValue();
 
@@ -97,13 +123,18 @@ window.run = function () {
 
     new Function("console", js)(fakeConsole);
 
-    output.textContent = logs.join("\n") || "✅ Program executed.";
+    output.textContent = logs.join("\n") || "Program executed.";
+    setStatus("Success");
   } catch (e) {
     output.classList.add("error");
+    setStatus("Error");
 
-    if (e.location)
-      output.textContent = formatPeggyError(e, code);
-    else
-      output.textContent = "Runtime Error:\n" + e.message;
+    if (e.location) output.textContent = formatPeggyError(e, code);
+    else output.textContent = "Runtime Error:\n" + e.message;
   }
 };
+
+function setStatus(label) {
+  const status = document.getElementById("run-status");
+  if (status) status.textContent = label;
+}

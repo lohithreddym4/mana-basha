@@ -1,244 +1,210 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <!-- Primary SEO -->
-    <title>
-      Telugitha – A Modern Telugu Programming Language Playground
-    </title>
+    <meta charset="UTF-8" />
+    <title>Telugitha - Telugu Programming Language Playground</title>
     <meta name="google-site-verification" content="iK0bFAsOe6mcI1p3PRFbNflMJ2Ymi29v0KkRt7av5hM" />
     <meta
       name="title"
-      content="Telugitha – A Modern Telugu Programming Language" />
+      content="Telugitha - A Telugu Programming Language" />
     <meta
       name="description"
-      content="Telugitha is a Telugu-inspired programming language that compiles to JavaScript. Write code in Telugu, run it instantly in your browser, and explore language design." />
+      content="Telugitha is a Telugu-inspired programming language that compiles to JavaScript. Write expressive code in Telugu-flavored syntax and run it in your browser." />
     <meta
       name="keywords"
-      content="Telugu programming language, Indian programming language, learn compilers, programming playground, Telugu code, javascript compiler, programming language experiment" />
+      content="Telugu programming language, Indian programming language, Telugu code, javascript compiler, programming language experiment" />
     <meta name="author" content="Venkata Lohith Kumar Reddy" />
-
-    <!-- Mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Robots -->
     <meta name="robots" content="index, follow" />
-
-    <!-- Open Graph (VERY IMPORTANT for sharing) -->
     <meta
       property="og:title"
-      content="Telugitha – A Modern Telugu Programming Language" />
+      content="Telugitha - A Telugu Programming Language" />
     <meta
       property="og:description"
-      content="Write programs in Telugu. Compile to JavaScript instantly. Explore how programming languages are built." />
+      content="Write programs in Telugu-inspired syntax. Compile to JavaScript instantly." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://telugitha.netlify.app" />
-
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Telugitha – A Modern Telugu Programming Language" />
+      content="Telugitha - A Telugu Programming Language" />
     <meta
       name="twitter:description"
       content="A Telugu-inspired programming language running entirely in your browser." />
-
-    <!-- Theme color for browsers -->
-    <meta name="theme-color" content="#020617" />
+    <meta name="theme-color" content="#080b12" />
 
     <link rel="stylesheet" href="./styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js"></script>
   </head>
 
   <body>
-    <div class="header">
-      <div class="title">🔥 <span>Telugitha</span> Playground</div>
+    <header class="site-header">
+      <a class="brand" href="#playground" aria-label="Telugitha home">
+        <span class="brand-mark">తె</span>
+        <span>
+          <strong>Telugitha</strong>
+          <small>Mana Basha. Mana Code.</small>
+        </span>
+      </a>
 
-      <div style="color: #64748b">A Modern Telugu Programming Language</div>
-    </div>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#playground">Playground</a>
+        <a href="#supremacy">Supremacy</a>
+        <a href="#docs">Docs</a>
+      </nav>
+    </header>
 
-    <div class="container">
-      <div class="panel">
-        <div class="panel-header">Editor</div>
-        <div id="editor"></div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-header">Output</div>
-        <pre id="output"></pre>
-      </div>
-    </div>
-
-    <button class="run-btn" onclick="run()">▶ Run (Shift + Enter)</button>
-    <section class="docs">
-      <h2>📘 Telugitha Documentation</h2>
-    
-      <p>
-        Telugitha is a Telugu-inspired programming language that compiles
-        directly to JavaScript. It is designed to make programming feel
-        natural, readable, and expressive for Telugu speakers while
-        remaining powerful under the hood.
-      </p>
-    
-      <div class="docs-grid">
-    
-        <!-- VARIABLES -->
-        <div class="doc-card">
-          <h3>🟢 Variables</h3>
-          <p>Use <strong>igo</strong> to declare variables.</p>
-          <pre>
-    igo x = 10;
-    igo name = "Telugitha";
-          </pre>
-        </div>
-    
-        <!-- BOOLEANS -->
-        <div class="doc-card">
-          <h3>🟢 Booleans</h3>
-          <p>Telugitha has native boolean keywords.</p>
-          <pre>
-    nijam   → true
-    abaddam → false
-    
-    igo alive = nijam;
-          </pre>
-        </div>
-    
-        <!-- STRINGS -->
-        <div class="doc-card">
-          <h3>🟢 Strings</h3>
-          <p>Strings are written using double quotes.</p>
-          <pre>
-    igo name = "lohith";
-    chupi(name);
-          </pre>
-        </div>
-    
-        <!-- STRING INDEXING -->
-        <div class="doc-card">
-          <h3>🟢 String Indexing</h3>
-          <p>Access characters using index notation.</p>
-          <pre>
-    igo word = "hello";
-    chupi(word[0]);   // h
-    chupi(word[1]);   // e
-          </pre>
-        </div>
-    
-        <!-- CONDITIONALS -->
-        <div class="doc-card">
-          <h3>🟢 Conditionals</h3>
-          <p>
-            Use <strong>okavela</strong> for if and
-            <strong>lekunte</strong> for else.
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Telugu-first programming language</p>
+          <h1 id="hero-title">Telugu syntax that walks into JavaScript with authority.</h1>
+          <p class="hero-text">
+            Telugitha turns native-feeling Telugu keywords into runnable JavaScript,
+            giving the language of the user a seat at the compiler table.
           </p>
-          <pre>
-    okavela x > 5 {
-      chupi("Greater");
-    } lekunte {
-      chupi("Smaller");
-    }
-          </pre>
+          <div class="hero-actions">
+            <a class="primary-action" href="#playground">Open playground</a>
+            <a class="secondary-action" href="#docs">Read syntax</a>
+          </div>
         </div>
-    
-        <!-- LOOPS -->
-        <div class="doc-card">
-          <h3>🟢 Loops</h3>
-          <p>Repeat code while a condition is true.</p>
-          <pre>
-    igo i = 0;
-    
-    chestoone undu {
-      chupi(i);
-      i = i + 1;
-    } (i < 5) varuku
-          </pre>
-        </div>
-    
-        <!-- OPERATORS -->
-        <div class="doc-card">
-          <h3>🟢 Operators</h3>
-          <pre>
-    +   addition
-    -   subtraction
-    *   multiplication
-    /   division
-    %   modulus
-    
-    ==  equal
-    !=  not equal
-    <   less than
-    >   greater than
-    <=  less than or equal
-    >=  greater than or equal
-          </pre>
-        </div>
-    
-        <!-- TRUTHY CONDITIONS -->
-        <div class="doc-card">
-          <h3>🟢 Truthy Conditions</h3>
-          <p>Any expression can be used directly in conditions.</p>
-          <pre>
-    igo alive = nijam;
-    
-    okavela alive {
-      chupi("Alive!");
-    }
-          </pre>
-        </div>
-    
-        <!-- PRINTING -->
-        <div class="doc-card">
-          <h3>🟢 Printing Output</h3>
-          <p>Use <strong>chupi()</strong> to print output.</p>
-          <pre>
-    chupi("Hello World");
-    chupi(10 + 20);
-          </pre>
-        </div>
-    
-        <!-- EXAMPLE -->
-        <div class="doc-card">
-          <h3>🟢 Example: Palindrome</h3>
-          <p>A complete Telugitha program.</p>
-          <pre>
-    igo word = "madam";
-    igo start = 0;
-    igo end = word.length - 1;
-    igo palindrome = nijam;
-    
-    chestoone undu {
-      okavela word[start] != word[end] {
-        palindrome = abaddam;
-        start = end;
-      } lekunte {
-        start = start + 1;
-        end = end - 1;
-      }
-    } (start < end) varuku
-    
-    okavela palindrome {
-      chupi("Palindrome");
-    } lekunte {
-      chupi("Not Palindrome");
-    }
-          </pre>
-        </div>
-    
-      </div>
-    </section>
-    
 
-    <div class="footer">
-      <div>
-        Built with ☕ and obsession by
-        <a href="https://lohith-dev.netlify.app/" target="_blank">
+        <aside class="language-banner" aria-label="Telugu language statement">
+          <div class="telugu-word">తెలుగు</div>
+          <div class="banner-grid">
+            <span>igo</span>
+            <span>okavela</span>
+            <span>chupi</span>
+            <span>nijam</span>
+            <span>varuku</span>
+            <span>lekunte</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="supremacy-strip" id="supremacy" aria-label="Language supremacy highlights">
+        <div>
+          <span class="metric">01</span>
+          <strong>Native rhythm</strong>
+          <p>Keywords read like spoken intent instead of borrowed ceremony.</p>
+        </div>
+        <div>
+          <span class="metric">JS</span>
+          <strong>Real execution</strong>
+          <p>Programs compile to JavaScript and run in the browser instantly.</p>
+        </div>
+        <div>
+          <span class="metric">తె</span>
+          <strong>Cultural signal</strong>
+          <p>The interface makes Telugu the dominant visual language.</p>
+        </div>
+      </section>
+
+      <section class="workspace" id="playground" aria-label="Telugitha playground">
+        <div class="workspace-top">
+          <div>
+            <p class="eyebrow">Live compiler</p>
+            <h2>Write Telugitha. Watch JavaScript obey.</h2>
+          </div>
+          <div class="toolbar">
+            <button class="sample-btn" type="button" data-example="palindrome">Palindrome</button>
+            <button class="sample-btn" type="button" data-example="count">Counter</button>
+            <button class="run-btn" type="button" onclick="run()">
+              <span aria-hidden="true">▶</span>
+              Run
+            </button>
+          </div>
+        </div>
+
+        <div class="container">
+          <section class="panel editor-panel" aria-label="Code editor">
+            <div class="panel-header">
+              <span>Editor</span>
+              <small>Shift + Enter</small>
+            </div>
+            <div id="editor"></div>
+          </section>
+
+          <section class="panel output-panel" aria-label="Program output">
+            <div class="panel-header">
+              <span>Output</span>
+              <small id="run-status">Waiting</small>
+            </div>
+            <pre id="output">Run the sample to see Telugitha speak.</pre>
+          </section>
+        </div>
+      </section>
+
+      <section class="docs" id="docs">
+        <div class="section-heading">
+          <p class="eyebrow">Language manual</p>
+          <h2>Syntax that feels local and compiles global.</h2>
+        </div>
+
+        <div class="docs-grid">
+          <article class="doc-card featured">
+            <h3>Variables</h3>
+            <p>Use <strong>igo</strong> to declare values.</p>
+            <pre><code>igo x = 10;
+igo name = "Telugitha";</code></pre>
+          </article>
+
+          <article class="doc-card">
+            <h3>Booleans</h3>
+            <p>Truth values are expressed with Telugu-flavored words.</p>
+            <pre><code>nijam   -> true
+abaddam -> false
+
+igo alive = nijam;</code></pre>
+          </article>
+
+          <article class="doc-card">
+            <h3>Conditionals</h3>
+            <p><strong>okavela</strong> handles if, <strong>lekunte</strong> handles else.</p>
+            <pre><code>okavela x > 5 {
+  chupi("Greater");
+} lekunte {
+  chupi("Smaller");
+}</code></pre>
+          </article>
+
+          <article class="doc-card">
+            <h3>Loops</h3>
+            <p>Repeat work until the condition reaches <strong>varuku</strong>.</p>
+            <pre><code>igo i = 0;
+
+chestoone undu {
+  chupi(i);
+  i = i + 1;
+} (i < 5) varuku</code></pre>
+          </article>
+
+          <article class="doc-card">
+            <h3>Output</h3>
+            <p>Use <strong>chupi()</strong> to print visible program output.</p>
+            <pre><code>chupi("Hello World");
+chupi(10 + 20);</code></pre>
+          </article>
+
+          <article class="doc-card">
+            <h3>Operators</h3>
+            <p>Arithmetic and comparisons stay familiar for fast learning.</p>
+            <pre><code>+  -  *  /  %
+== != < > <= >=</code></pre>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>
+        Built by
+        <a href="https://lohith-dev.netlify.app/" target="_blank" rel="noreferrer">
           Venkata Lohith Kumar Reddy
         </a>
-      </div>
-
-      <div>Powered by Peggy • Compiles to JavaScript</div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js"></script>
+      </span>
+      <span>Powered by Peggy. Compiles to JavaScript.</span>
+    </footer>
 
     <script type="module" src="./script.js"></script>
   </body>
