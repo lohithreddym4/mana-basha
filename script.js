@@ -8,7 +8,7 @@ const examples = {
   palindrome: `igo word = "madam";
 igo start = 0;
 igo end = word.length - 1;
-igo palindrome = adugu("Oka padham cheppu");
+igo palindrome = nijam;
 
 chestoone undu {
 
